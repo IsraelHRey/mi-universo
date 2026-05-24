@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+/* ==========================================================================
+   🌌 CONFIGURACIÓN DEL ESPACIO Y EFECTO DE PARPADEO REALISTA
+   ========================================================================== */
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #020617; /* Un azul casi negro más profundo */
+    
+    /* Creamos 3 capas de estrellas con tamaños diferentes */
+    background-image: 
+        radial-gradient(#ffffff 1.5px, transparent 1.5px), /* Estrellas grandes */
+        radial-gradient(#ffffff 1px, transparent 1px),   /* Estrellas medianas */
+        radial-gradient(#ffffff 0.5px, transparent 0.5px); /* Estrellas pequeñas/lejanas */
+    
+    background-size: 250px 250px, 180px 180px, 120px 120px;
+    background-position: 0 0, 40px 40px, 70px 70px;
+    
+    /* Mezclamos las estrellas usando una animación que altera el brillo global */
+    animation: cieloParpadeante 4s ease-in-out infinite alternate;
+    
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ✨ ANIMACIÓN PARA UN CIELO VERDADERO ✨ */
+@keyframes cieloParpadeante {
+    0% {
+        /* Estado inicial: brillo normal */
+        filter: brightness(1);
+        background-position: 0 0, 40px 40px, 70px 70px;
+    }
+    50% {
+        /* Reducimos el brillo sutilmente y movemos las capas */
+        /* Esto hace que unas estrellas se oculten y otras resalten */
+        filter: brightness(0.6);
+        background-position: 2px -4px, -3px 2px, 4px -1px;
+    }
+    100% {
+        /* Brillo máximo para simular el destello */
+        filter: brightness(1.3);
+        background-position: -1px 2px, 2px -3px, -2px 4px;
+    }
+}
+
+/* 🛸 El Contenedor con Perspectiva 3D */
+.contenedor-cosmos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1200px; /* Distancia de la cámara al fondo */
+    perspective-origin: center;
+}
+
+/* ✍️ Texto Fijo Central */
+.texto-principal {
+    font-size: 2.5rem;
+    position: absolute;
+    z-index: 100;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+/* 🎬 Escenario para JavaScript */
+#escenario-flotante {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; /* Activa comportamiento 3D en los hijos */
+}
+
+/* ==========================================================================
+   🎈 2. ESTILOS DE ELEMENTOS FLOTANTES
+   ========================================================================== */
+.elemento-flotante {
+    position: absolute;
+    bottom: -30vh; /* Inician abajo fuera de la pantalla */
+    left: var(--posicion-x);
+    animation: viajarAlFrente var(--duracion) linear infinite;
+    backface-visibility: hidden;
+}
+
+/* 📸 Marcos Polaroid */
+/* 📸 Marcos Polaroid más grandes */
+.foto-polaroid {
+    width: 260px;  /* Subió de 180px a 260px */
+    height: 260px; /* Subió de 180px a 260px */
+    object-fit: cover;
+    border: 12px solid #fff;       
+    border-bottom: 35px solid #fff; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    transform: rotate(var(--rotacion));
+    background-color: #111;
+}
+
+/* 💬 Textos de Amor con fuente más grande */
+.texto-amor {
+    font-size: 3.5rem;
+    color: #ffb3c1;
+    text-shadow: 0 0 15px #ff4d6d, 0 0 30px #ff4d6d;
+    white-space: nowrap;
+    /* 📋 Cambiamos la fuente aquí: */
+    font-family: 'Indie Flower', cursive; 
+}
+
+/* ==========================================================================
+   🎬 3. ANIMACIONES (KEYFRAMES)
+   ========================================================================== */
+
+/* Animación de las Estrellas */
+@keyframes viajarAlFrente {
+    0% {
+        transform: translateZ(-2000px) translateY(0) rotate(5deg) scale(0.1);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        /* Incrementamos la escala final a 1.3 para que al acercarse se vean imponentes */
+        transform: translateZ(200px) translateY(-140vh) rotate(-5deg) scale(1.3);
+        opacity: 0;
+    }
+}
+
