@@ -16,82 +16,76 @@ const frasesRomanticas = [
     "Tú haces que mi mundo tenga sentido",
     "Eres mi razón para sonreír",
     "Tu amor es mi mayor fortuna",
-    "Tu amor es mi mayor fortuna",
     "No cambio ni un segundo contigo por nada del mundo",
     "Eres mi paz y mi locura favorita",
     "Desde que llegaste, todo es mejor"
 ];
 
-// Aquí defines cuántas fotos guardaste en tu carpeta
 const totalFotos = 18; 
-
 const escenario = document.getElementById('escenario-flotante');
 
-// 2. Función principal que crea un elemento al azar 🎲
+// 2. Función principal que crea fotos y textos flotantes 🎲
 function crearElementoFlotante() {
     const elemento = document.createElement('div');
     elemento.classList.add('elemento-flotante');
     
-    // --- EL VOLADO ALEATORIO ---
-    // Generamos un número entre 0 y 1
     const suerte = Math.random(); 
     
     if (suerte < 0.5) {
-        // 💬 Opción A: Es una frase de texto
         elemento.classList.add('texto-amor');
         const indiceAzar = Math.floor(Math.random() * frasesRomanticas.length);
         elemento.innerText = frasesRomanticas[indiceAzar];
     } else {
-        // 📸 Opción B: Es una foto de la carpeta
-        const numeroFotoAzar = Math.floor(Math.random() * totalFotos) + 1; // Número entre 1 y el total de fotos
-        
+        const numeroFotoAzar = Math.floor(Math.random() * totalFotos) + 1; 
         const img = document.createElement('img');
-        img.src = `fotos/foto${numeroFotoAzar}.jpg`; // Ruta local de tu foto
+        img.src = `fotos/foto${numeroFotoAzar}.jpg`; 
         img.classList.add('foto-polaroid');
-        
         elemento.appendChild(img);
     }
     
-    // 3. Configuración de variables aleatorias para el CSS 🎨
-    const posicionX = Math.random() * 90; // Evitamos que se pegue al borde derecho
-    const duracion = 2 + Math.random() * 2; // Ahora es entre 4 y 8 segundos 🏃‍♂️
-    const rotacion = (Math.random() * 30) - 15; // Rotación leve entre -15 y 15 grados
+    const posicionX = Math.random() * 90; 
+    const duracion = 4 + Math.random() * 4; 
+    const rotacion = (Math.random() * 30) - 15; 
     
     elemento.style.setProperty('--posicion-x', `${posicionX}%`);
     elemento.style.setProperty('--duracion', `${duracion}s`);
     elemento.style.setProperty('--rotacion', `${rotacion}deg`);
     
-    escenario.appendChild(elemento);
+    escenario.appendChild(elemento); // Corregido: antes decía corazon
     
-    // 4. Limpieza de memoria 🗑️
     setTimeout(() => {
         elemento.remove();
     }, duracion * 1000);
 }
 
-setInterval(crearElementoFlotante, 1200); // Nace un elemento cada 1.2 segundos ⏳
+setInterval(crearElementoFlotante, 1200); 
 
-// 🖱️ Escuchador de eventos para detectar los clics en la pantalla
-// 🖱️ Escuchador de eventos para detectar los clics en la pantalla
+// 🖱️ Escuchador de eventos para clics con animación directa en JavaScript
 document.body.addEventListener('click', function(e) {
-    // 🎵 ACTIVAR MÚSICA: Buscamos el audio y le damos Play
     const reproductor = document.getElementById('musica-fondo');
-    reproductor.play().catch(error => console.log("Esperando interacción para reproducir audio"));
+    reproductor.play().catch(error => console.log("Esperando interacción para audio"));
 
-    // (Aquí abajo continúa todo el código que ya tenías para crear el corazón...)
     const corazon = document.createElement('span');
-    corazon.classList.add('elemento-flotante', 'texto-amor');
+    corazon.classList.add('corazon-puro');
     corazon.innerText = "❤️";
     
-    const xPorcentaje = (e.clientX / window.innerWidth) * 100;
-    corazon.style.setProperty('--posicion-x', `${xPorcentaje}%`);
-    corazon.style.setProperty('--duracion', '4s');
-    corazon.style.setProperty('--rotacion', '0deg');
-    corazon.style.bottom = `${window.innerHeight - e.clientY}px`;
+    // Posicionamiento en píxeles de la ventana
+    corazon.style.left = `${e.clientX - 25}px`;
+    corazon.style.top = `${e.clientY - 25}px`;
     
-    escenario.appendChild(corazon);
+    document.body.appendChild(corazon);
+    
+    // Animación controlada desde JavaScript para evitar conflictos de CSS
+    corazon.animate([
+        { transform: 'translateY(0) scale(0.6)', opacity: 0 },
+        { opacity: 1, offset: 0.15 },
+        { transform: 'translateY(-80px) scale(1.2)', opacity: 0 }
+    ], {
+        duration: 1200,
+        easing: 'ease-out'
+    });
     
     setTimeout(() => {
         corazon.remove();
-    }, 4000);
+    }, 1200);
 });
