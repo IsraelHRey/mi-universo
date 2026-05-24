@@ -1,30 +1,34 @@
-// 1. Datos del universo 🗂️
+// ==========================================================================
+// 🗂️ 1. DATOS DEL UNIVERSO (MENSAJES ROMÁNTICOS)
+// ==========================================================================
 const frasesRomanticas = [
-    "Eres mi todo ✨",
-    "Te amo ❤️",
-    "Siempre juntos",
+    "Eres mi One piece 🏴‍☠️✨",
+    "Te amo Gatunia ❤️",
+    "Siempre juntos 🫂",
     "Mi persona favorita 🐻",
-    "Eres preciosa",
-    "Eres lo mejor que me ha pasado",
-    "Contigo, yo en la vida ya gané",
-    "Mi lugar favorito del mundo eres tú",
-    "A tu lado, todo es más bonito",
-    "Tú me completas",
-    "No necesito buscar más, ya te encontré a ti",
-    "Eres mi sueño hecho realidad",
-    "Cada día me enamoro más de ti",
-    "Tú haces que mi mundo tenga sentido",
-    "Eres mi razón para sonreír",
-    "Tu amor es mi mayor fortuna",
-    "No cambio ni un segundo contigo por nada del mundo",
-    "Eres mi paz y mi locura favorita",
-    "Desde que llegaste, todo es mejor"
+    "Eres la más preciosa ❤️",
+    "La mujer más inteligente 🧠",
+    "Mi mujer valiente",
+    "Eres mi lugar favorito",
+    "Contigo, todo es más bonito",
+    "Me inspiras ❤️",
+    "Contigo lo tengo todo ❤️",
+    "Eres la mujer más maravillosa ✨",
+    "Cada día me enamoro más de ti ❤️",
+    "Eres mi razón de sonreír 😁",
+    "Toca la pantalla ❤️",
+    "Dos hijitos",
+    "1 perrito 🐶",
+    "1 casita 🏡"
 ];
+
 
 const totalFotos = 18; 
 const escenario = document.getElementById('escenario-flotante');
 
-// 2. Función principal que crea fotos y textos flotantes 🎲
+// ==========================================================================
+// 🎲 2. ELEMENTOS FLOTANTES (FOTOS Y TEXTOS)
+// ==========================================================================
 function crearElementoFlotante() {
     const elemento = document.createElement('div');
     elemento.classList.add('elemento-flotante');
@@ -51,16 +55,19 @@ function crearElementoFlotante() {
     elemento.style.setProperty('--duracion', `${duracion}s`);
     elemento.style.setProperty('--rotacion', `${rotacion}deg`);
     
-    escenario.appendChild(elemento); // Corregido: antes decía corazon
+    escenario.appendChild(elemento);
     
     setTimeout(() => {
         elemento.remove();
     }, duracion * 1000);
 }
 
+// Genera un elemento flotante cada 1.2 segundos
 setInterval(crearElementoFlotante, 1200); 
 
-// 🖱️ Escuchador de eventos para clics con animación directa en JavaScript
+// ==========================================================================
+// 🖱️ 3. INTERACCIÓN POR CLIC (MÚSICA Y CORAZONES)
+// ==========================================================================
 document.body.addEventListener('click', function(e) {
     const reproductor = document.getElementById('musica-fondo');
     reproductor.play().catch(error => console.log("Esperando interacción para audio"));
@@ -69,13 +76,11 @@ document.body.addEventListener('click', function(e) {
     corazon.classList.add('corazon-puro');
     corazon.innerText = "❤️";
     
-    // Posicionamiento en píxeles de la ventana
     corazon.style.left = `${e.clientX - 25}px`;
     corazon.style.top = `${e.clientY - 25}px`;
     
     document.body.appendChild(corazon);
     
-    // Animación controlada desde JavaScript para evitar conflictos de CSS
     corazon.animate([
         { transform: 'translateY(0) scale(0.6)', opacity: 0 },
         { opacity: 1, offset: 0.15 },
