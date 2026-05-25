@@ -2,25 +2,23 @@
 // 🗂️ 1. DATOS DEL UNIVERSO (MENSAJES ROMÁNTICOS)
 // ==========================================================================
 const frasesRomanticas = [
-    "Eres mi todo ✨",
-    "Te amo ❤️",
-    "Siempre juntos",
+    "Te amo Gatunia ❤️",
+    "Siempre juntos 🫂",
     "Mi persona favorita 🐻",
-    "Eres preciosa",
-    "Eres lo mejor que me ha pasado",
-    "Contigo, yo en la vida ya gané",
-    "Mi lugar favorito del mundo eres tú",
-    "A tu lado, todo es más bonito",
-    "Tú me completas",
-    "No necesito buscar más, ya te encontré a ti",
-    "Eres mi sueño hecho realidad",
-    "Cada día me enamoro más de ti",
-    "Tú haces que mi mundo tenga sentido",
-    "Eres mi razón para sonreír",
-    "Tu amor es mi mayor fortuna",
-    "No cambio ni un segundo contigo por nada del mundo",
-    "Eres mi paz y mi locura favorita",
-    "Desde que llegaste, todo es mejor"
+    "Eres la más preciosa ❤️",
+    "La mujer más inteligente 🧠",
+    "Mi mujer valiente",
+    "Eres mi lugar favorito",
+    "Contigo, todo es más bonito",
+    "Me inspiras ❤️",
+    "Contigo lo tengo todo ❤️",
+    "Eres la mujer más maravillosa ✨",
+    "Cada día me enamoro más de ti ❤️",
+    "Eres mi razón de sonreír 😁",
+    "Toca la pantalla ❤️",
+    "Dos hijitos",
+    "1 perrito 🐶",
+    "1 casita 🏡"
 ];
 
 const totalFotos = 18; 
