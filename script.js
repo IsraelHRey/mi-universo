@@ -2,32 +2,32 @@
 // 🗂️ 1. DATOS DEL UNIVERSO (MENSAJES ROMÁNTICOS)
 // ==========================================================================
 const frasesRomanticas = [
-    "Eres mi One piece 🏴‍☠️✨",
-    "Te amo Gatunia ❤️",
-    "Siempre juntos 🫂",
+    "Eres mi todo ✨",
+    "Te amo ❤️",
+    "Siempre juntos",
     "Mi persona favorita 🐻",
-    "Eres la más preciosa ❤️",
-    "La mujer más inteligente 🧠",
-    "Mi mujer valiente",
-    "Eres mi lugar favorito",
-    "Contigo, todo es más bonito",
-    "Me inspiras ❤️",
-    "Contigo lo tengo todo ❤️",
-    "Eres la mujer más maravillosa ✨",
-    "Cada día me enamoro más de ti ❤️",
-    "Eres mi razón de sonreír 😁",
-    "Toca la pantalla ❤️",
-    "Dos hijitos",
-    "1 perrito 🐶",
-    "1 casita 🏡"
+    "Eres preciosa",
+    "Eres lo mejor que me ha pasado",
+    "Contigo, yo en la vida ya gané",
+    "Mi lugar favorito del mundo eres tú",
+    "A tu lado, todo es más bonito",
+    "Tú me completas",
+    "No necesito buscar más, ya te encontré a ti",
+    "Eres mi sueño hecho realidad",
+    "Cada día me enamoro más de ti",
+    "Tú haces que mi mundo tenga sentido",
+    "Eres mi razón para sonreír",
+    "Tu amor es mi mayor fortuna",
+    "No cambio ni un segundo contigo por nada del mundo",
+    "Eres mi paz y mi locura favorita",
+    "Desde que llegaste, todo es mejor"
 ];
-
 
 const totalFotos = 18; 
 const escenario = document.getElementById('escenario-flotante');
 
 // ==========================================================================
-// 🎲 2. ELEMENTOS FLOTANTES (FOTOS Y TEXTOS)
+// 🎲 2. ELEMENTOS FLOTANTES CON DIRECCIÓN MULTIDIRECCIONAL
 // ==========================================================================
 function crearElementoFlotante() {
     const elemento = document.createElement('div');
@@ -47,11 +47,23 @@ function crearElementoFlotante() {
         elemento.appendChild(img);
     }
     
-    const posicionX = Math.random() * 90; 
-    const duracion = 4 + Math.random() * 4; 
-    const rotacion = (Math.random() * 30) - 15; 
+    // 🌌 Posición de origen: un punto al azar en la pantalla
+    const posicionX = Math.random() * 100;
+    const posicionY = Math.random() * 100;
     
+    // 🧭 Dirección de escape: calcula hacia dónde viajará el elemento al expandirse
+    // Si nace a la izquierda, viaja más a la izquierda; si nace arriba, viaja más arriba.
+    const desplazarX = (posicionX - 50) * 8; // Multiplicador para abrir el ángulo
+    const desplazarY = (posicionY - 50) * 6;
+    
+    const duracion = 5 + Math.random() * 4; // Un viaje ligeramente más suave
+    const rotacion = (Math.random() * 40) - 20; 
+    
+    // Asignación de las variables al CSS
     elemento.style.setProperty('--posicion-x', `${posicionX}%`);
+    elemento.style.setProperty('--posicion-y', `${posicionY}%`);
+    elemento.style.setProperty('--desplazamiento-x', `${desplazarX}px`);
+    elemento.style.setProperty('--desplazamiento-y', `${desplazarY}px`);
     elemento.style.setProperty('--duracion', `${duracion}s`);
     elemento.style.setProperty('--rotacion', `${rotacion}deg`);
     
@@ -62,8 +74,8 @@ function crearElementoFlotante() {
     }, duracion * 1000);
 }
 
-// Genera un elemento flotante cada 1.2 segundos
-setInterval(crearElementoFlotante, 1200); 
+// Genera un elemento flotante cada 1.3 segundos para balancear la dispersión
+setInterval(crearElementoFlotante, 1300); 
 
 // ==========================================================================
 // 🖱️ 3. INTERACCIÓN POR CLIC (MÚSICA Y CORAZONES)
